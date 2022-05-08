@@ -1,6 +1,6 @@
 # Golang Gin Starter
 
-Gin Starter is a laravel-like boilerplate with RS256 jwt
+Gin Starter is a microservices boilerplate with RS256 JWT
 
 It comes pre-configured with :
 
