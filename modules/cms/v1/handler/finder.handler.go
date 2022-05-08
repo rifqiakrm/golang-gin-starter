@@ -1,13 +1,13 @@
 package handler
 
 import (
-	"gin-starter/modules/cms/v1/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
 	"gin-starter/middleware"
+	"gin-starter/modules/cms/v1/service"
 	"gin-starter/resource"
 	"gin-starter/response"
 )

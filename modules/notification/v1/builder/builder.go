@@ -1,15 +1,15 @@
 package builder
 
 import (
-	"gin-starter/modules/notification/v1/pubsub/handler"
-	"gin-starter/modules/notification/v1/repository"
-	"gin-starter/modules/notification/v1/service"
 	"github.com/gin-gonic/gin"
 	"github.com/gomodule/redigo/redis"
 	"gorm.io/gorm"
 
 	"gin-starter/app"
 	"gin-starter/config"
+	"gin-starter/modules/notification/v1/pubsub/handler"
+	"gin-starter/modules/notification/v1/repository"
+	"gin-starter/modules/notification/v1/service"
 )
 
 // BuildNotificationHandler build user handlers

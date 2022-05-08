@@ -2,13 +2,13 @@ package service
 
 import (
 	"context"
-	"gin-starter/modules/notification/v1/repository"
 
 	"github.com/google/uuid"
 	"github.com/rifqiakrm/onesignal-go-lib"
 
 	"gin-starter/config"
 	"gin-starter/entity"
+	"gin-starter/modules/notification/v1/repository"
 )
 
 type NotificationCreator struct {

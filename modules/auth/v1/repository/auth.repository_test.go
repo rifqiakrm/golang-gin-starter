@@ -3,7 +3,6 @@ package repository_test
 import (
 	"context"
 	"errors"
-	"gin-starter/modules/auth/v1/repository"
 	"regexp"
 	"testing"
 
@@ -14,6 +13,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 
+	"gin-starter/modules/auth/v1/repository"
 	"gin-starter/test/helpers"
 	"gin-starter/utils"
 )

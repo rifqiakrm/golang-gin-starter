@@ -2,11 +2,11 @@ package service
 
 import (
 	"context"
-	"gin-starter/modules/cms/v1/repository"
 
 	"github.com/google/uuid"
 
 	"gin-starter/config"
+	"gin-starter/modules/cms/v1/repository"
 )
 
 type CMSDeleter struct {

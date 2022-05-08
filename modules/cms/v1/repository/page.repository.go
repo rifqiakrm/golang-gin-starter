@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"gin-starter/entity"
 	"log"
 	"time"
 
@@ -10,6 +9,8 @@ import (
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
+
+	"gin-starter/entity"
 )
 
 type PageRepository struct {

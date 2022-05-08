@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/base64"
 	"fmt"
-	service2 "gin-starter/modules/cms/v1/service"
 	"net/http"
 	"strings"
 	"time"
@@ -12,6 +11,7 @@ import (
 	"github.com/google/uuid"
 
 	"gin-starter/config"
+	service2 "gin-starter/modules/cms/v1/service"
 	"gin-starter/resource"
 	"gin-starter/response"
 	"gin-starter/utils"
@@ -155,7 +155,6 @@ func (cc *CMSCreatorHandler) CreatePage(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response.ErrorApiResponse(http.StatusBadRequest, err.Error()))
 		c.Abort()
 		return
-		return
 	}
 
 	page, err := cc.cmsCreator.CreatePage(
@@ -167,7 +166,6 @@ func (cc *CMSCreatorHandler) CreatePage(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, response.ErrorApiResponse(http.StatusBadRequest, err.Error()))
 		c.Abort()
-		return
 		return
 	}
 
@@ -182,7 +180,6 @@ func (cc *CMSCreatorHandler) CreateFaq(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response.ErrorApiResponse(http.StatusBadRequest, err.Error()))
 		c.Abort()
 		return
-		return
 	}
 
 	page, err := cc.cmsCreator.CreateFaq(
@@ -194,7 +191,6 @@ func (cc *CMSCreatorHandler) CreateFaq(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, response.ErrorApiResponse(http.StatusBadRequest, err.Error()))
 		c.Abort()
-		return
 		return
 	}
 

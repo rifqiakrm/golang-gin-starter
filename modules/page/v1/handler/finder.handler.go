@@ -1,12 +1,13 @@
 package handler
 
 import (
-	"gin-starter/modules/page/v1/service"
-	"gin-starter/resource"
-	"gin-starter/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
+	"gin-starter/modules/page/v1/service"
+	"gin-starter/resource"
+	"gin-starter/response"
 )
 
 type PageFinderHandler struct {

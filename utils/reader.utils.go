@@ -15,7 +15,11 @@ func ReadCsvFile(filePath string) [][]string {
 	if err != nil {
 		log.Fatal("Unable to read input file "+filePath, err)
 	}
-	defer f.Close()
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Println("can't close file while reading csv:", err)
+		}
+	}()
 
 	csvReader := csv.NewReader(f)
 	records, err := csvReader.ReadAll()
@@ -31,7 +35,12 @@ func ReadExcelFile(filePath string) [][]string {
 	if err != nil {
 		log.Fatal("Unable to read input file "+filePath, err)
 	}
-	defer f.Close()
+
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Println("can't close file while reading excel:", err)
+		}
+	}()
 
 	rows, err := f.GetRows("Sheet1")
 	if err != nil {

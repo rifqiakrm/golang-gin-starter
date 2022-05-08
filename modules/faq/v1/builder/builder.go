@@ -1,14 +1,14 @@
 package builder
 
 import (
+	"github.com/gin-gonic/gin"
+	"github.com/gomodule/redigo/redis"
+	"gorm.io/gorm"
+
 	"gin-starter/app"
 	"gin-starter/config"
 	faqRepo "gin-starter/modules/faq/v1/repository"
 	faq "gin-starter/modules/faq/v1/service"
-	"github.com/gomodule/redigo/redis"
-
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // BuildFaqHandler build user handlers

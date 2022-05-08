@@ -1,9 +1,9 @@
 package resource
 
 import (
-	"gin-starter/entity"
-
 	"github.com/google/uuid"
+
+	"gin-starter/entity"
 )
 
 type GetPageResponse struct {

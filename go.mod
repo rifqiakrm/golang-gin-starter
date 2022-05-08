@@ -15,9 +15,11 @@ require (
 	github.com/joeshaw/envdecode v0.0.0-20200121155833-099f1fc765bd
 	github.com/joho/godotenv v1.4.0
 	github.com/mailgun/mailgun-go/v4 v4.6.1
+	github.com/opentracing/opentracing-go v1.2.0
 	github.com/pkg/errors v0.9.1
 	github.com/rifqiakrm/onesignal-go-lib v1.0.1
 	github.com/stretchr/testify v1.7.0
+	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	github.com/xuri/excelize/v2 v2.5.0
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 	google.golang.org/api v0.73.0
@@ -30,6 +32,7 @@ require (
 	cloud.google.com/go v0.100.2 // indirect
 	cloud.google.com/go/compute v1.5.0 // indirect
 	cloud.google.com/go/iam v0.1.0 // indirect
+	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.13.0 // indirect
@@ -51,7 +54,6 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.3 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -61,9 +63,11 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/richardlehane/mscfb v1.0.3 // indirect
 	github.com/richardlehane/msoleps v1.0.1 // indirect
+	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	github.com/xuri/efp v0.0.0-20210322160811-ab561f5b45e3 // indirect
 	go.opencensus.io v0.23.0 // indirect
+	go.uber.org/atomic v1.7.0 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect

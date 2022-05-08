@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"gin-starter/modules/notification/v1/service"
 	"log"
 
 	"cloud.google.com/go/pubsub"
@@ -12,6 +11,7 @@ import (
 
 	"gin-starter/config"
 	"gin-starter/entity"
+	"gin-starter/modules/notification/v1/service"
 )
 
 // SendEmailPubsubHandler struct

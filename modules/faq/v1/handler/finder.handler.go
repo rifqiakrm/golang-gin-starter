@@ -1,12 +1,13 @@
 package handler
 
 import (
-	"gin-starter/modules/faq/v1/service"
-	"gin-starter/resource"
-	"gin-starter/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
+	"gin-starter/modules/faq/v1/service"
+	"gin-starter/resource"
+	"gin-starter/response"
 )
 
 type FaqFinderHandler struct {

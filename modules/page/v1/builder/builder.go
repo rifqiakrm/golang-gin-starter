@@ -1,14 +1,14 @@
 package builder
 
 import (
+	"github.com/gin-gonic/gin"
+	"github.com/gomodule/redigo/redis"
+	"gorm.io/gorm"
+
 	"gin-starter/app"
 	"gin-starter/config"
 	pageRepo "gin-starter/modules/page/v1/repository"
 	page "gin-starter/modules/page/v1/service"
-	"github.com/gomodule/redigo/redis"
-
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // BuildPageHandler build user handlers

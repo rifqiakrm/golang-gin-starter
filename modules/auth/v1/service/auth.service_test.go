@@ -3,7 +3,7 @@ package service_test
 import (
 	"context"
 	"database/sql"
-	"gin-starter/modules/auth/v1/service"
+	"log"
 	"os"
 	"testing"
 
@@ -14,6 +14,7 @@ import (
 
 	"gin-starter/config"
 	"gin-starter/entity"
+	"gin-starter/modules/auth/v1/service"
 	mockRepo "gin-starter/test/mock/modules/auth/repository"
 	"gin-starter/utils"
 )
@@ -66,7 +67,11 @@ func (suite *AuthServiceTestSuite) TestAuthService_AuthValidate() {
 			panic(err)
 		}
 
-		defer tempDir.Close()
+		defer func() {
+			if err := tempDir.Close(); err != nil {
+				log.Println("can't close file while reading csv:", err)
+			}
+		}()
 
 		defer func() {
 			if err := os.RemoveAll("template"); err != nil {

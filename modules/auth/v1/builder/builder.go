@@ -1,14 +1,14 @@
 package builder
 
 import (
-	authRepo "gin-starter/modules/auth/v1/repository"
-	auth "gin-starter/modules/auth/v1/service"
 	"github.com/gin-gonic/gin"
 	"github.com/gomodule/redigo/redis"
 	"gorm.io/gorm"
 
 	"gin-starter/app"
 	"gin-starter/config"
+	authRepo "gin-starter/modules/auth/v1/repository"
+	auth "gin-starter/modules/auth/v1/service"
 )
 
 // BuildAuthHandler build auth handlers

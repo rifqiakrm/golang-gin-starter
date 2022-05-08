@@ -1,16 +1,16 @@
 package builder
 
 import (
-	"gin-starter/modules/cms/v1/repository"
-	"gin-starter/modules/cms/v1/service"
-	notificationRepo "gin-starter/modules/notification/v1/repository"
-	notification "gin-starter/modules/notification/v1/service"
 	"github.com/gin-gonic/gin"
 	"github.com/gomodule/redigo/redis"
 	"gorm.io/gorm"
 
 	"gin-starter/app"
 	"gin-starter/config"
+	"gin-starter/modules/cms/v1/repository"
+	"gin-starter/modules/cms/v1/service"
+	notificationRepo "gin-starter/modules/notification/v1/repository"
+	notification "gin-starter/modules/notification/v1/service"
 )
 
 // BuildCMSHandler build user handlers

@@ -2,8 +2,7 @@ package handler_test
 
 import (
 	"database/sql"
-	"gin-starter/modules/auth/v1/handler"
-	"gin-starter/modules/auth/v1/service"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -19,6 +18,8 @@ import (
 
 	"gin-starter/config"
 	"gin-starter/entity"
+	"gin-starter/modules/auth/v1/handler"
+	"gin-starter/modules/auth/v1/service"
 	"gin-starter/test/helpers"
 	mockRepo "gin-starter/test/mock/modules/auth/repository"
 	"gin-starter/utils"
@@ -127,20 +128,35 @@ func (suite *AuthHandlerTestSuite) BeforeTest(string, string) {
 
 	tempDir, _ := os.Create("template/email/send_otp.html")
 
-	defer tempDir.Close()
+	defer func() {
+		if err := tempDir.Close(); err != nil {
+			log.Println("can't close file while reading csv:", err)
+		}
+	}()
 
 	tempDirPublic, _ := os.Create("config/rsa-key/oauth-public.key")
 
-	tempDirPublic.Write([]byte(publicKeySample))
+	if _, err := tempDirPublic.Write([]byte(publicKeySample)); err != nil {
+		log.Println(err)
+	}
 
-	defer tempDirPublic.Close()
+	defer func() {
+		if err := tempDirPublic.Close(); err != nil {
+			log.Println(err)
+		}
+	}()
 
 	tempDirPrivate, _ := os.Create("config/rsa-key/oauth-private.key")
 
-	tempDirPrivate.Write([]byte(privateKeySample))
+	if _, err := tempDirPrivate.Write([]byte(privateKeySample)); err != nil {
+		log.Println(err)
+	}
 
-	defer tempDirPrivate.Close()
-
+	defer func() {
+		if err := tempDirPrivate.Close(); err != nil {
+			log.Println(err)
+		}
+	}()
 }
 
 func (suite *AuthHandlerTestSuite) AfterTest(string, string) {

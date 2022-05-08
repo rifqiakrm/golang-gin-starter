@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/base64"
 	"fmt"
-	service2 "gin-starter/modules/cms/v1/service"
 	"net/http"
 	"strings"
 	"time"
@@ -12,6 +11,7 @@ import (
 	"github.com/google/uuid"
 
 	"gin-starter/entity"
+	service2 "gin-starter/modules/cms/v1/service"
 	"gin-starter/resource"
 	"gin-starter/response"
 	"gin-starter/utils"

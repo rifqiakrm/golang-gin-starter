@@ -3,20 +3,26 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
+	"log"
+	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gomodule/redigo/redis"
+	"github.com/opentracing/opentracing-go"
+	"github.com/opentracing/opentracing-go/ext"
+	"github.com/uber/jaeger-client-go"
+	jaegerConfig "github.com/uber/jaeger-client-go/config"
+	"gorm.io/gorm"
+
+	"gin-starter/app"
+	"gin-starter/config"
 	authBuilder "gin-starter/modules/auth/v1/builder"
 	cmsBuilder "gin-starter/modules/cms/v1/builder"
 	faqBuilder "gin-starter/modules/faq/v1/builder"
 	notificationBuilder "gin-starter/modules/notification/v1/builder"
 	pageBuilder "gin-starter/modules/page/v1/builder"
 	userBuilder "gin-starter/modules/user/v1/builder"
-	"log"
-
-	"github.com/gin-gonic/gin"
-	"github.com/gomodule/redigo/redis"
-	"gorm.io/gorm"
-
-	"gin-starter/app"
-	"gin-starter/config"
 	pubsubSDK "gin-starter/sdk/pubsub"
 	"gin-starter/utils"
 )
@@ -49,10 +55,21 @@ func main() {
 	}
 
 	router := gin.New()
+	tracer, closer, _ := NewJaegerTracer(cfg.AppName, fmt.Sprintf("%s:%s", cfg.Jaeger.Address, cfg.Jaeger.Port))
+
+	defer func() {
+		if err := closer.Close(); err != nil {
+			log.Println("failed to close opentracing closer:", err)
+		}
+	}()
+
+	opentracing.SetGlobalTracer(tracer)
+
+	router.Use(OpenTracing())
 	router.Use(CORSMiddleware())
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
-	router.Static("/public", "./public")
+	router.GET("/healthz", HealthGET)
 
 	BuildHandler(*cfg, router, db, redisPool)
 
@@ -127,4 +144,47 @@ func buildRedisPool(cfg *config.Config) *redis.Pool {
 
 func createPubSubClient(projectID, googleSaFile string) *pubsubSDK.PubSub {
 	return pubsubSDK.NewPubSub(projectID, &googleSaFile)
+}
+
+func NewJaegerTracer(serviceName string, jaegerHostPort string) (opentracing.Tracer, io.Closer, error) {
+	cfg := jaegerConfig.Configuration{
+		Sampler: &jaegerConfig.SamplerConfig{
+			Type:  "const",
+			Param: 1,
+		},
+		Reporter: &jaegerConfig.ReporterConfig{
+			LogSpans:            true,
+			BufferFlushInterval: 1 * time.Second,
+			LocalAgentHostPort:  jaegerHostPort,
+		},
+
+		ServiceName: serviceName,
+	}
+
+	tracer, closer, err := cfg.NewTracer(jaegerConfig.Logger(jaeger.StdLogger))
+	if err != nil {
+		panic(fmt.Sprintf("ERROR: cannot init Jaeger: %v\n", err))
+	}
+
+	return tracer, closer, err
+}
+
+func OpenTracing() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		wireCtx, _ := opentracing.GlobalTracer().Extract(
+			opentracing.HTTPHeaders,
+			opentracing.HTTPHeadersCarrier(c.Request.Header))
+
+		serverSpan := opentracing.StartSpan(c.Request.URL.Path,
+			ext.RPCServerOption(wireCtx))
+		defer serverSpan.Finish()
+		c.Request = c.Request.WithContext(opentracing.ContextWithSpan(c.Request.Context(), serverSpan))
+		c.Next()
+	}
+}
+
+func HealthGET(c *gin.Context) {
+	c.JSON(200, gin.H{
+		"status": "OK",
+	})
 }

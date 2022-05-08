@@ -2,10 +2,11 @@ package repository
 
 import (
 	"context"
-	"gin-starter/entity"
 
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
+
+	"gin-starter/entity"
 )
 
 type FaqRepository struct {

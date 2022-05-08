@@ -1,11 +1,11 @@
 package handler
 
 import (
-	"gin-starter/modules/notification/v1/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 
+	"gin-starter/modules/notification/v1/service"
 	"gin-starter/resource"
 	"gin-starter/response"
 )

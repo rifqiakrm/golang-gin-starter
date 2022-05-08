@@ -2,12 +2,12 @@ package service
 
 import (
 	"context"
-	"gin-starter/modules/notification/v1/repository"
 
 	"github.com/google/uuid"
 
 	"gin-starter/config"
 	"gin-starter/entity"
+	"gin-starter/modules/notification/v1/repository"
 )
 
 type NotificationFinder struct {

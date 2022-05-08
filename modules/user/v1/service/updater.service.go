@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"gin-starter/modules/user/v1/repository"
 	"html/template"
 	"log"
 
@@ -13,6 +12,7 @@ import (
 
 	"gin-starter/config"
 	"gin-starter/entity"
+	"gin-starter/modules/user/v1/repository"
 	"gin-starter/utils"
 )
 

@@ -19,6 +19,7 @@ type Config struct {
 	JWTConfig JWTConfig
 	Image     Image
 	OneSignal OneSignal
+	Jaeger    Jaeger
 	URL       URL
 	MailGun   MailGun
 }
@@ -97,6 +98,12 @@ type MailGun struct {
 	From   string `env:"MAILGUN_FROM"`
 	Domain string `env:"MAILGUN_DOMAIN"`
 	APIKey string `env:"MAILGUN_API_KEY"`
+}
+
+// Jaeger holds configuration for the Jaeger.
+type Jaeger struct {
+	Address string `env:"JAEGER_ADDRESS"`
+	Port    string `env:"JAEGER_PORT"`
 }
 
 func LoadConfig(env string) (*Config, error) {

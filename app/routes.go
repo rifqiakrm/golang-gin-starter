@@ -1,6 +1,12 @@
 package app
 
 import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+
+	"gin-starter/config"
+	"gin-starter/middleware"
 	authhandlerv1 "gin-starter/modules/auth/v1/handler"
 	authservicev1 "gin-starter/modules/auth/v1/service"
 	"gin-starter/modules/cms/v1/handler"
@@ -13,12 +19,6 @@ import (
 	pageservicev1 "gin-starter/modules/page/v1/service"
 	userhandlerv1 "gin-starter/modules/user/v1/handler"
 	userservicev1 "gin-starter/modules/user/v1/service"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
-
-	"gin-starter/config"
-	"gin-starter/middleware"
 	"gin-starter/response"
 )
 

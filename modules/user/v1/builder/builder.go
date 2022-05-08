@@ -1,14 +1,14 @@
 package builder
 
 import (
-	userRepo "gin-starter/modules/user/v1/repository"
-	"gin-starter/modules/user/v1/service"
 	"github.com/gin-gonic/gin"
 	"github.com/gomodule/redigo/redis"
 	"gorm.io/gorm"
 
 	"gin-starter/app"
 	"gin-starter/config"
+	userRepo "gin-starter/modules/user/v1/repository"
+	"gin-starter/modules/user/v1/service"
 )
 
 // BuildUserHandler build user handlers
